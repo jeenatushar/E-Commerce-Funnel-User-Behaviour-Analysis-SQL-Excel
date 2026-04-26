@@ -58,6 +58,9 @@ select *, ROUND(add_to_cart * 100.0 / view) AS Conversion_Rate_view_to_Cart,
     ROUND(payment_info * 100.0 / checkout_start) AS Conversion_Rate_Checkout_start_to_Payment_info,
     ROUND(purchase * 100.0 / payment_info) AS Conversion_Rate_payment_info_to_purchase from te;
 
-
+4.USE sales;
+select  *  from user_events;
+select  product_id,sum(amount)  as total from user_events group by product_id order by total desc;
+select distinct user_id,count(user_id) as loyal_user from user_events  where event_type='purchase' group by user_id
 
 3.select traffic_source,SUM(amount) as revenue,ROW_NUMBER() OVER (ORDER BY SUM(amount) DESC) AS ranking from user_events group by traffic_source order by revenue desc;
